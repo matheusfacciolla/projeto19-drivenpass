@@ -16,41 +16,35 @@ enum cardTypes {
   both
 }
 
-model User {
-  id         Int          @id @default(autoincrement())
+model users {
+  id         Int           @id @default(autoincrement())
   email      String
   password   String
-  Credential Credential[]
-  Note       Note[]
-  Card       Card[]
-  Wifi       Wifi[]
-
-  @@map("users")
+  Credential credentials[]
+  Note       notes[]
+  Card       cards[]
+  Wifi       wifi[]
 }
 
-model Credential {
+model credentials {
   id       Int    @id @default(autoincrement())
   userId   Int
   url      String
   username String
   password String
   title    String
-  users    User   @relation(fields: [userId], references: [id])
-
-  @@map("credentials")
+  users    users  @relation(fields: [userId], references: [id])
 }
 
-model Note {
+model notes {
   id     Int    @id @default(autoincrement())
   userId Int
   title  String
   note   String
-  users  User   @relation(fields: [userId], references: [id])
-
-  @@map("notes")
+  users  users  @relation(fields: [userId], references: [id])
 }
 
-model Card {
+model cards {
   id             Int       @id @default(autoincrement())
   userId         Int
   cardNumber     Int
@@ -60,18 +54,14 @@ model Card {
   password       String
   isVirtual      Boolean   @default(false)
   type           cardTypes
-  users          User      @relation(fields: [userId], references: [id])
-
-  @@map("cards")
+  users          users     @relation(fields: [userId], references: [id])
 }
 
-model Wifi {
+model wifi {
   id       Int    @id @default(autoincrement())
   userId   Int
   name     String
   password String
   title    String
-  users    User   @relation(fields: [userId], references: [id])
-
-  @@map("wifis")
+  users    users  @relation(fields: [userId], references: [id])
 }
