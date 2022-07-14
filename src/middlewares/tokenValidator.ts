@@ -16,8 +16,6 @@ export async function tokenValidator(
   const key = process.env.JWT_SECRET;
   const user = jwt.verify(token, key);
 
-  console.log(user)
-
   if (!user) {
     throw { type: "Unauthorized", message: "Invalid token" };
   }
