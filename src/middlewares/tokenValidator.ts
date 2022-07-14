@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-export default async function tokenValidator(
+export async function tokenValidator(
   req: Request,
   res: Response,
   next: NextFunction
@@ -16,11 +16,13 @@ export default async function tokenValidator(
   const key = process.env.JWT_SECRET;
   const user = jwt.verify(token, key);
 
+  console.log(user)
+
   if (!user) {
     throw { type: "Unauthorized", message: "Invalid token" };
   }
 
-  res.locals.userId = user;
+  res.locals.user = user;
 
   next();
 }
