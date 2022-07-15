@@ -3,10 +3,7 @@ import { credentials } from "@prisma/client";
 
 export type CreateCredentialData = Omit<credentials, "id">;
 
-export async function getAllUserCredentialsByTitle(
-  credential: CreateCredentialData,
-  userId: number
-) {
+export async function getAllUserCredentialsByTitle(credential: CreateCredentialData, userId: number) {
   const getAllUserCredentials = await prisma.credentials.findFirst({
     where: {
       userId: userId,
@@ -17,19 +14,8 @@ export async function getAllUserCredentialsByTitle(
   return getAllUserCredentials;
 }
 
-export async function postCredential(
-  credential: CreateCredentialData,
-  userId: number
-) {
-  await prisma.credentials.create({
-    data: {
-      userId: userId,
-      url: credential.url,
-      username: credential.username,
-      password: credential.password,
-      title: credential.title,
-    },
-  });
+export async function postCredential(credential: CreateCredentialData,userId: number) {
+  await prisma.credentials.create({ data: { ...credential, userId } });
 }
 
 export async function getAllUserCredentials(userId: number) {
@@ -53,10 +39,7 @@ export async function getCredentialById(userId: number, credentialId: number) {
   return getAllUserCredentials;
 }
 
-export async function deleteCredentialById(
-  userId: number,
-  credentialId: number
-) {
+export async function deleteCredentialById(userId: number, credentialId: number) {
   await prisma.credentials.deleteMany({
     where: {
       id: credentialId,

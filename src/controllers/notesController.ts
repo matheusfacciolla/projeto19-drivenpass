@@ -4,7 +4,7 @@ import { CreateNoteData } from "../repositories/notesRepository.js";
 
 export async function postNote(req: Request, res: Response) {
   const note: CreateNoteData = req.body;
-  const userId = res.locals.user.id; //???
+  const userId: number = res.locals.user.id;
 
   await notesService.postNote(note, userId);
   return res.sendStatus(201);
@@ -12,7 +12,7 @@ export async function postNote(req: Request, res: Response) {
 
 export async function getAllNotes(req: Request, res: Response) {
   const noteId = parseInt(req.params.noteId);
-  const userId = res.locals.user.id; //???
+  const userId: number = res.locals.user.id;
 
   if (!noteId) {
     const allNotes = await notesService.getAllNotes(userId);
@@ -25,7 +25,7 @@ export async function getAllNotes(req: Request, res: Response) {
 
 export async function deleteNoteById(req: Request, res: Response) {
   const noteId = parseInt(req.params.noteId);
-  const userId = res.locals.user.id; //???
+  const userId: number = res.locals.user.id;
 
   await notesService.deleteNoteById(userId, noteId);
   return res.sendStatus(200);

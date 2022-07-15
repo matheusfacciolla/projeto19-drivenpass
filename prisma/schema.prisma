@@ -47,10 +47,11 @@ model notes {
 model cards {
   id             Int       @id @default(autoincrement())
   userId         Int
+  title          String
   cardNumber     Int
   cardName       String
   securityCode   Int
-  expirationDate Int
+  expirationDate String
   password       String
   isVirtual      Boolean   @default(false)
   type           cardTypes

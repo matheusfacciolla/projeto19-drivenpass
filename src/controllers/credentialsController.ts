@@ -4,7 +4,7 @@ import { CreateCredentialData } from "../repositories/credentialsRepository.js";
 
 export async function postCredential(req: Request, res: Response) {
   const credential: CreateCredentialData = req.body;
-  const userId = res.locals.user.id; //???
+  const userId: number = res.locals.user.id;
 
   await credentialsService.postCredential(credential, userId);
   return res.sendStatus(201);
@@ -12,7 +12,7 @@ export async function postCredential(req: Request, res: Response) {
 
 export async function getAllCredentials(req: Request, res: Response) {
   const credentialId = parseInt(req.params.credentialId);
-  const userId = res.locals.user.id; //???
+  const userId: number = res.locals.user.id;
 
   if (!credentialId) {
     const allCredentials = await credentialsService.getAllCredentials(userId);
@@ -28,7 +28,7 @@ export async function getAllCredentials(req: Request, res: Response) {
 
 export async function deleteCredentialById(req: Request, res: Response) {
   const credentialId = parseInt(req.params.credentialId);
-  const userId = res.locals.user.id; //???
+  const userId: number = res.locals.user.id;
 
   await credentialsService.deleteCredentialById(userId, credentialId);
   return res.sendStatus(200);

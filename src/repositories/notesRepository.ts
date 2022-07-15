@@ -18,13 +18,7 @@ export async function getAllUserNotesByTitle(
 }
 
 export async function postNote(note: CreateNoteData, userId: number) {
-  await prisma.notes.create({
-    data: {
-      userId: userId,
-      title: note.title,
-      note: note.note,
-    },
-  });
+  await prisma.notes.create({ data: { ...note, userId } });
 }
 
 export async function getAllUserNotes(userId: number) {

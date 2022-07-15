@@ -7,7 +7,7 @@ import { notesSchema } from "../schemas/notesSchema.js";
 const noteRouter = Router();
 
 noteRouter.post("/createnote", tokenValidator, schemaValidator(notesSchema), postNote);
-noteRouter.get("/getnotes/:noteId", tokenValidator, getAllNotes);
+noteRouter.get("/getnote/:noteId", tokenValidator, getAllNotes);
 noteRouter.get("/getnotes", tokenValidator, getAllNotes);
 noteRouter.delete("/deletenote/:noteId", tokenValidator, deleteNoteById);
 
