@@ -3,18 +3,18 @@ import { credentials } from "@prisma/client";
 
 export type CreateCredentialData = Omit<credentials, "id">;
 
-export async function getAllUserCrdentialsByTitle(
+export async function getAllUserCredentialsByTitle(
   credential: CreateCredentialData,
   userId: number
 ) {
-  const getAllUserCrdentials = await prisma.credentials.findFirst({
+  const getAllUserCredentials = await prisma.credentials.findFirst({
     where: {
       userId: userId,
       title: credential.title,
     },
   });
 
-  return getAllUserCrdentials;
+  return getAllUserCredentials;
 }
 
 export async function postCredential(
@@ -33,24 +33,24 @@ export async function postCredential(
 }
 
 export async function getAllUserCredentials(userId: number) {
-  const getAllUserCrdentials = await prisma.credentials.findMany({
+  const getAllUserCredentials = await prisma.credentials.findMany({
     where: {
       userId: userId,
     },
   });
 
-  return getAllUserCrdentials;
+  return getAllUserCredentials;
 }
 
 export async function getCredentialById(userId: number, credentialId: number) {
-  const getAllUserCrdentials = await prisma.credentials.findMany({
+  const getAllUserCredentials = await prisma.credentials.findMany({
     where: {
       id: credentialId,
       userId: userId,
     },
   });
 
-  return getAllUserCrdentials;
+  return getAllUserCredentials;
 }
 
 export async function deleteCredentialById(

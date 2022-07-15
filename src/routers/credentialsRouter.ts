@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { postCredential, getAllCredentials, deleteCredentialById } from "../controllers/credentialController.js";
+import { postCredential, getAllCredentials, deleteCredentialById } from "../controllers/credentialsController.js";
 import { tokenValidator } from "../middlewares/tokenValidator.js";
 import { schemaValidator } from "../middlewares/schemaValidator.js";
-import { credentialSchema } from "../schemas/credentialSchema.js";
+import { credentialsSchema } from "../schemas/credentialsSchema.js";
 
 const credentialRouter = Router();
 
-credentialRouter.post("/createcredential", tokenValidator, schemaValidator(credentialSchema), postCredential);
+credentialRouter.post("/createcredential", tokenValidator, schemaValidator(credentialsSchema), postCredential);
 credentialRouter.get("/getcredentials/:credentialId", tokenValidator, getAllCredentials);
 credentialRouter.get("/getcredentials", tokenValidator, getAllCredentials);
 credentialRouter.delete("/deletecredential/:credentialId", tokenValidator, deleteCredentialById);

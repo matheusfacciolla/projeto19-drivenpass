@@ -1,5 +1,5 @@
-import * as credentialRepository from "../repositories/credentialRepository.js";
-import { CreateCredentialData } from "../repositories/credentialRepository.js";
+import * as credentialsRepository from "../repositories/credentialsRepository.js";
+import { CreateCredentialData } from "../repositories/credentialsRepository.js";
 import { encrypt, decrypt } from "../utils/cryptrFormat.js";
 
 export async function postCredential(
@@ -8,7 +8,7 @@ export async function postCredential(
 ) {
   credential.password = encrypt(credential.password);
   const isCredentialExist =
-    await credentialRepository.getAllUserCrdentialsByTitle(credential, userId);
+    await credentialsRepository.getAllUserCredentialsByTitle(credential, userId);
 
   if (isCredentialExist) {
     throw {
@@ -17,13 +17,13 @@ export async function postCredential(
     };
   }
 
-  await credentialRepository.postCredential(credential, userId);
+  await credentialsRepository.postCredential(credential, userId);
 
   return;
 }
 
 export async function getAllCredentials(userId: number) {
-  const allUserCredentials = await credentialRepository.getAllUserCredentials(
+  const allUserCredentials = await credentialsRepository.getAllUserCredentials(
     userId
   );
 
@@ -54,7 +54,7 @@ export async function getAllCredentials(userId: number) {
 }
 
 export async function getCredentialsById(userId: number, credentialId: number) {
-  const credentialsById = await credentialRepository.getCredentialById(
+  const credentialsById = await credentialsRepository.getCredentialById(
     userId,
     credentialId
   );
@@ -89,7 +89,7 @@ export async function deleteCredentialById(
   userId: number,
   credentialId: number
 ) {
-  const credentialsById = await credentialRepository.getCredentialById(
+  const credentialsById = await credentialsRepository.getCredentialById(
     userId,
     credentialId
   );
@@ -101,6 +101,6 @@ export async function deleteCredentialById(
     };
   }
 
-  await credentialRepository.deleteCredentialById(userId, credentialId);
+  await credentialsRepository.deleteCredentialById(userId, credentialId);
   return;
 }
