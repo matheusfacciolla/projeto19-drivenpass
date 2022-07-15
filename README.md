@@ -118,9 +118,9 @@ POST /createcard (autenticada)
     - Rota para criar um cartão
     - headers: { "Authorization": "Bearer $token" }
     - body: {
-        "cardNumber":134264538378,
+        "cardNumber":"134264538378",
         "cardName":"FULANO B SILVA",
-        "securityCode":123,
+        "securityCode":"123",
         "expirationDate":"12/23",
         "password":"12345",
         "isVirtual":false,

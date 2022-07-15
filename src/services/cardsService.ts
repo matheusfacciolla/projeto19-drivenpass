@@ -4,6 +4,7 @@ import { encrypt, decrypt } from "../utils/cryptrFormat.js";
 
 export async function postCard(card: CreateCardData, userId: number) {
   card.password = encrypt(card.password);
+  card.securityCode = encrypt(card.securityCode);
   const iscardExist = await cardsRepository.getAllUsercardsByTitle(card, userId);
 
   if (iscardExist) {
@@ -29,19 +30,11 @@ export async function getAllCards(userId: number) {
   }
 
   const cardsList = [];
-
   for (let card of allUserCards) {
     card = {
       ...card,
-
-      id: card.id,
-      userId: card.userId,
-      title: card.title,
-      cardNumber: card.cardNumber,
-      securityCode: card.securityCode,
+      securityCode: decrypt(card.securityCode),
       password: decrypt(card.password),
-      isVirtual: card.isVirtual,
-      type: card.type
     };
     cardsList.push(card);
   }
@@ -60,19 +53,11 @@ export async function getCardsById(userId: number, cardId: number) {
   }
 
   const cardsList = [];
-
   for (let card of cardsById) {
     card = {
       ...card,
-
-      id: card.id,
-      userId: card.userId,
-      title: card.title,
-      cardNumber: card.cardNumber,
-      securityCode: card.securityCode,
+      securityCode: decrypt(card.securityCode),
       password: decrypt(card.password),
-      isVirtual: card.isVirtual,
-      type: card.type
     };
     cardsList.push(card);
   }

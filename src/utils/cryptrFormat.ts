@@ -1,18 +1,18 @@
 import Cryptr from "cryptr";
 //import bcrypt from "bcrypt";
 
-export function encrypt(number: string) {
+export function encrypt(data: string) {
   const cryptr = new Cryptr("myTotallySecretKey");
-  const encryptNumber = cryptr.encrypt(number);
+  const encryptData = cryptr.encrypt(data);
 
-  return encryptNumber;
+  return encryptData;
 }
 
-export function decrypt(number: string) {
+export function decrypt(data: string) {
   const cryptr = new Cryptr("myTotallySecretKey");
-  const encryptNumber = cryptr.decrypt(number);
+  const encryptData = cryptr.decrypt(data);
 
-  return encryptNumber;
+  return encryptData;
 }
 
 /* export function encryptedPassword(password: string) {

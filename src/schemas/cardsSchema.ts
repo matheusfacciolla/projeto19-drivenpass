@@ -3,9 +3,9 @@ import { CreateCardData } from "../repositories/cardsRepository.js";
 
 export const cardsSchema = joi.object<CreateCardData>({
   title: joi.string().required(),
-  cardNumber: joi.number().required(),
+  cardNumber: joi.string().required(),
   cardName: joi.string().required(),
-  securityCode: joi.number().required(),
+  securityCode: joi.string().required(),
   expirationDate: joi.string().required(),
   password: joi.string().required(),
   isVirtual: joi.boolean().required(),

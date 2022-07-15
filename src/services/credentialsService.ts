@@ -35,18 +35,8 @@ export async function getAllCredentials(userId: number) {
   }
 
   const credentialsList = [];
-
   for (let credential of allUserCredentials) {
-    credential = {
-      ...credential,
-
-      id: credential.id,
-      userId: credential.userId,
-      url: credential.url,
-      username: credential.username,
-      password: decrypt(credential.password),
-      title: credential.title,
-    };
+    credential = {...credential,password: decrypt(credential.password),};
     credentialsList.push(credential);
   }
 
@@ -67,18 +57,8 @@ export async function getCredentialsById(userId: number, credentialId: number) {
   }
 
   const credentialsList = [];
-
   for (let credential of credentialsById) {
-    credential = {
-      ...credential,
-
-      id: credential.id,
-      userId: credential.userId,
-      url: credential.url,
-      username: credential.username,
-      password: decrypt(credential.password),
-      title: credential.title,
-    };
+    credential = {...credential, password: decrypt(credential.password)};
     credentialsList.push(credential);
   }
 

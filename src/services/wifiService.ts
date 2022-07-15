@@ -20,17 +20,8 @@ export async function getAllWifi(userId: number) {
   }
 
   const wifiList = [];
-
   for (let wifi of allUserWifi) {
-    wifi = {
-      ...wifi,
-
-      id: wifi.id,
-      userId: wifi.userId,
-      name: wifi.name,
-      password: decrypt(wifi.password),
-      title: wifi.title,
-    };
+    wifi = {...wifi,password: decrypt(wifi.password)};
     wifiList.push(wifi);
   }
 
@@ -48,17 +39,8 @@ export async function getWifiById(userId: number, wifiId: number) {
   }
 
   const wifiList = [];
-
   for (let wifi of wifiById) {
-    wifi = {
-      ...wifi,
-
-      id: wifi.id,
-      userId: wifi.userId,
-      name: wifi.name,
-      password: decrypt(wifi.password),
-      title: wifi.title,
-    };
+    wifi = {...wifi, password: decrypt(wifi.password)};
     wifiList.push(wifi);
   }
 
