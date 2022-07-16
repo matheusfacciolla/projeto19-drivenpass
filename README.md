@@ -8,14 +8,13 @@
    <img src="https://img.shields.io/badge/author-Matheus_Tassi-4dae71?style=flat-square" />
 </p>
 
-
-##  :clipboard: Descrição
+## :clipboard: Descrição
 
 Navegar na internet pode ser uma atividade muito divertida, mas ao mesmo tempo, muito perigosa. Inúmeros estudos e levantamentos (nacionais e internacionais) mostram que o número de golpes virtuais não para de crescer. O que levanta a questão: como nos proteger? Existem várias formas diferentes de se proteger. Tudo começa com o uso de senhas diferentes e seguras. Neste projeto, foi desenvolvido a api da DrivenPass, um gerenciador de senhas!
 
-***
+---
 
-## :computer:	 Tecnologias e Conceitos
+## :computer: Tecnologias e Conceitos
 
 - JWTs & refresh tokens
 - Node.js
@@ -24,7 +23,7 @@ Navegar na internet pode ser uma atividade muito divertida, mas ao mesmo tempo, 
 - Postgresql
 - Heroku
 
-***
+---
 
 ## :rocket: Rotas
 
@@ -32,14 +31,13 @@ Navegar na internet pode ser uma atividade muito divertida, mas ao mesmo tempo, 
 POST /signup
     - Rota para cadastrar um novo usuário
     - headers: {}
-    - body: {        
+    - body: {
         "email": "fulano@gmail.com",
         "password": "12345"
     }
-    
 ```
-    
-```yml 
+
+```yml
 POST /signin
     - Rota para fazer login
     - headers: {}
@@ -48,8 +46,8 @@ POST /signin
         "senha": "12345"
     }
 ```
-    
-```yml 
+
+```yml
 POST /createcredential (autenticada)
     - Rota para criar uma credencial
     - headers: { "Authorization": "Bearer $token" }
@@ -66,7 +64,7 @@ GET /getcredential/:credentialId (autenticada)
     - Rota para listar uma credencial pelo id
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
-``` 
+```
 
 ```yml
 GET /getcredentials (autenticada)
@@ -74,7 +72,7 @@ GET /getcredentials (autenticada)
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
 ```
- 
+
 ```yml
 DELETE /deletecredential/:credentialId (autenticada)
     - Rota para deletar uma credencial pelo id
@@ -82,7 +80,7 @@ DELETE /deletecredential/:credentialId (autenticada)
     - body: {}
 ```
 
-```yml 
+```yml
 POST /createnote (autenticada)
     - Rota para criar uma nota
     - headers: { "Authorization": "Bearer $token" }
@@ -97,7 +95,7 @@ GET /getnote/:noteId (autenticada)
     - Rota para listar uma nota pelo id
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
-``` 
+```
 
 ```yml
 GET /getnotes (autenticada)
@@ -105,7 +103,7 @@ GET /getnotes (autenticada)
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
 ```
- 
+
 ```yml
 DELETE /deletenote/:noteId (autenticada)
     - Rota para deletar uma nota pelo id
@@ -113,7 +111,7 @@ DELETE /deletenote/:noteId (autenticada)
     - body: {}
 ```
 
-```yml 
+```yml
 POST /createcard (autenticada)
     - Rota para criar um cartão
     - headers: { "Authorization": "Bearer $token" }
@@ -134,7 +132,7 @@ GET /getcard/:cardId (autenticada)
     - Rota para listar um cartão pelo id
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
-``` 
+```
 
 ```yml
 GET /getcards (autenticada)
@@ -142,7 +140,7 @@ GET /getcards (autenticada)
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
 ```
- 
+
 ```yml
 DELETE /deletecard/:cardId (autenticada)
     - Rota para deletar um cartão pelo id
@@ -150,7 +148,7 @@ DELETE /deletecard/:cardId (autenticada)
     - body: {}
 ```
 
-```yml 
+```yml
 POST /createwifi (autenticada)
     - Rota para criar um wifi
     - headers: { "Authorization": "Bearer $token" }
@@ -166,7 +164,7 @@ GET /getwifi/:wifiId (autenticada)
     - Rota para listar um wifi pelo id
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
-``` 
+```
 
 ```yml
 GET /getwifi (autenticada)
@@ -174,14 +172,50 @@ GET /getwifi (autenticada)
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
 ```
- 
+
 ```yml
 DELETE /deletewifi/:wifiId (autenticada)
     - Rota para deletar um wifi pelo id
     - headers: { "Authorization": "Bearer $token" }
     - body: {}
 ```
-***
+
+```yml
+POST /createdocument (autenticada)
+    - Rota para criar um document
+    - headers: { "Authorization": "Bearer $token" }
+    - body: {
+        "docType":"cnh" | "rg" 
+        "completeName":"Fulano da Silva Santos"
+        "emissionDate":"01/22"
+        "expirationDate":"01/27"
+        "registerDate":"564368"
+        "agency":"SIGLA"
+    }
+```
+
+```yml
+GET /getdocument/:documentId (autenticada)
+    - Rota para listar um document pelo id
+    - headers: { "Authorization": "Bearer $token" }
+    - body: {}
+```
+
+```yml
+GET /getdocument (autenticada)
+    - Rota para listar todos os documents do usuario logado
+    - headers: { "Authorization": "Bearer $token" }
+    - body: {}
+```
+
+```yml
+DELETE /deletedocument/:documentId (autenticada)
+    - Rota para deletar um document pelo id
+    - headers: { "Authorization": "Bearer $token" }
+    - body: {}
+```
+
+---
 
 ## 🏁 Rodando a aplicação
 
@@ -200,6 +234,7 @@ npm install
 ```
 
 Finalizado o processo, é só inicializar o servidor
+
 ```
 npm run dev
 ```

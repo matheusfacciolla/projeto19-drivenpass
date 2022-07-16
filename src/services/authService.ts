@@ -3,15 +3,14 @@ import jwt from "jsonwebtoken";
 
 import * as authRepository from "../repositories/authRepository.js";
 import { CreateUserData } from "../repositories/authRepository.js";
+import { encrypt } from "../utils/cryptrFormat.js";
 
 export async function signUp(user: CreateUserData) {
-  const SALT = 10;
   const isEmailExist = await authRepository.findUserByEmail(user.email);
 
   if (!isEmailExist) {
-    user.password = await bcrypt.hash(user.password, SALT);
+    user.password = encrypt(user.password);
     await authRepository.createUser(user);
-    
   } else {
     throw {
       type: "Conflict",

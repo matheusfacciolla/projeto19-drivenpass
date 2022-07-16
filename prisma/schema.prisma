@@ -16,6 +16,11 @@ enum cardTypes {
   both
 }
 
+enum docTypes {
+  rg
+  cnh
+}
+
 model users {
   id         Int           @id @default(autoincrement())
   email      String
@@ -24,6 +29,7 @@ model users {
   Note       notes[]
   Card       cards[]
   Wifi       wifi[]
+  documents  documents[]
 }
 
 model credentials {
@@ -65,4 +71,16 @@ model wifi {
   password String
   title    String
   users    users  @relation(fields: [userId], references: [id])
+}
+
+model documents {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  docType        docTypes
+  completeName   String
+  emissionDate   String
+  expirationDate String
+  registerDate   String
+  agency         String
+  users          users    @relation(fields: [userId], references: [id])
 }

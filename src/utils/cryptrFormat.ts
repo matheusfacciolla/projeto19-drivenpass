@@ -1,5 +1,5 @@
 import Cryptr from "cryptr";
-//import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 
 export function encrypt(data: string) {
   const cryptr = new Cryptr("myTotallySecretKey");
@@ -15,9 +15,10 @@ export function decrypt(data: string) {
   return encryptData;
 }
 
-/* export function encryptedPassword(password: string) {
-  const encryptedPassword = bcrypt.hashSync(password, 10);
+export function encryptedPassword(password: string) {
+  const SALT = 10;
+  const encryptedPassword = bcrypt.hashSync(password, SALT);
   const cardData = { password: encryptedPassword };
 
   return cardData;
-} */
+} 

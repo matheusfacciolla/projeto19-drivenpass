@@ -14,7 +14,7 @@ export async function getAllUserCredentialsByTitle(credential: CreateCredentialD
   return getAllUserCredentials;
 }
 
-export async function postCredential(credential: CreateCredentialData,userId: number) {
+export async function postCredential(credential: CreateCredentialData, userId: number) {
   await prisma.credentials.create({ data: { ...credential, userId } });
 }
 

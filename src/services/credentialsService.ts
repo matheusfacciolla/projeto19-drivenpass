@@ -8,7 +8,10 @@ export async function postCredential(
 ) {
   credential.password = encrypt(credential.password);
   const isCredentialExist =
-    await credentialsRepository.getAllUserCredentialsByTitle(credential, userId);
+    await credentialsRepository.getAllUserCredentialsByTitle(
+      credential,
+      userId
+    );
 
   if (isCredentialExist) {
     throw {
@@ -36,7 +39,7 @@ export async function getAllCredentials(userId: number) {
 
   const credentialsList = [];
   for (let credential of allUserCredentials) {
-    credential = {...credential,password: decrypt(credential.password),};
+    credential = { ...credential, password: decrypt(credential.password) };
     credentialsList.push(credential);
   }
 
@@ -58,7 +61,7 @@ export async function getCredentialsById(userId: number, credentialId: number) {
 
   const credentialsList = [];
   for (let credential of credentialsById) {
-    credential = {...credential, password: decrypt(credential.password)};
+    credential = { ...credential, password: decrypt(credential.password) };
     credentialsList.push(credential);
   }
 
