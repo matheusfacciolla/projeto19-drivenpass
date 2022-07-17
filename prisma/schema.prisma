@@ -17,8 +17,8 @@ enum cardTypes {
 }
 
 enum docTypes {
-  rg
-  cnh
+  RG
+  CNH
 }
 
 model users {
@@ -28,7 +28,7 @@ model users {
   Credential credentials[]
   Note       notes[]
   Card       cards[]
-  Wifi       wifi[]
+  Wifi       wifis[]
   documents  documents[]
 }
 
@@ -40,6 +40,8 @@ model credentials {
   password String
   title    String
   users    users  @relation(fields: [userId], references: [id])
+
+  @@unique([userId, title])
 }
 
 model notes {
@@ -48,6 +50,8 @@ model notes {
   title  String
   note   String
   users  users  @relation(fields: [userId], references: [id])
+
+  @@unique([userId, title])
 }
 
 model cards {
@@ -62,9 +66,11 @@ model cards {
   isVirtual      Boolean   @default(false)
   type           cardTypes
   users          users     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, title])
 }
 
-model wifi {
+model wifis {
   id       Int    @id @default(autoincrement())
   userId   Int
   name     String

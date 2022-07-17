@@ -1,24 +1,24 @@
 import prisma from "../config/database.js";
-import { wifi } from "@prisma/client";
+import { wifis } from "@prisma/client";
 
-export type CreateWifiData = Omit<wifi, "id">;
+export type CreateWifiData = Omit<wifis, "id">;
 
 export async function postWifi(wifi: CreateWifiData, userId: number) {
-  await prisma.wifi.create({ data: { ...wifi, userId } });
+  await prisma.wifis.create({ data: { ...wifi, userId } });
 }
 
-export async function getAllUserWifi(userId: number) {
-  const getAllUserWifi = await prisma.wifi.findMany({
+export async function getAllUserWifis(userId: number) {
+  const getAllUserWifis = await prisma.wifis.findMany({
     where: {
       userId: userId,
     },
   });
 
-  return getAllUserWifi;
+  return getAllUserWifis;
 }
 
 export async function getWifiById(userId: number, wifiId: number) {
-  const getAllUserWifi = await prisma.wifi.findMany({
+  const getAllUserWifi = await prisma.wifis.findMany({
     where: {
       id: wifiId,
       userId: userId,
@@ -29,7 +29,7 @@ export async function getWifiById(userId: number, wifiId: number) {
 }
 
 export async function deleteWifiById(userId: number, wifiId: number) {
-  await prisma.wifi.deleteMany({
+  await prisma.wifis.deleteMany({
     where: {
       id: wifiId,
       userId: userId,

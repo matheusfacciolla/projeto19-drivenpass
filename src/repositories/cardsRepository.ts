@@ -3,10 +3,7 @@ import { cards } from "@prisma/client";
 
 export type CreateCardData = Omit<cards, "id">;
 
-export async function getAllUsercardsByTitle(
-  card: CreateCardData,
-  userId: number
-) {
+export async function getAllUsercardsByTitle(card: CreateCardData, userId: number) {
   const getAllUserCards = await prisma.cards.findFirst({
     where: {
       userId: userId,

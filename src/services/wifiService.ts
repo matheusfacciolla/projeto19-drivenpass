@@ -9,10 +9,10 @@ export async function postWifi(wifi: CreateWifiData, userId: number) {
   return;
 }
 
-export async function getAllWifi(userId: number) {
-  const allUserWifi = await wifiRepository.getAllUserWifi(userId);
+export async function getAllWifis(userId: number) {
+  const allUserWifis = await wifiRepository.getAllUserWifis(userId);
 
-  if (allUserWifi.length == 0) {
+  if (allUserWifis.length == 0) {
     throw {
       type: "Not_Found",
       message: "Wifi not found",
@@ -20,7 +20,7 @@ export async function getAllWifi(userId: number) {
   }
 
   const wifiList = [];
-  for (let wifi of allUserWifi) {
+  for (let wifi of allUserWifis) {
     wifi = { ...wifi, password: decrypt(wifi.password) };
     wifiList.push(wifi);
   }

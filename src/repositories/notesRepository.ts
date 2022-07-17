@@ -3,10 +3,7 @@ import { notes } from "@prisma/client";
 
 export type CreateNoteData = Omit<notes, "id">;
 
-export async function getAllUserNotesByTitle(
-  note: CreateNoteData,
-  userId: number
-) {
+export async function getAllUserNotesByTitle(note: CreateNoteData, userId: number) {
   const getAllUserNotes = await prisma.notes.findFirst({
     where: {
       userId: userId,

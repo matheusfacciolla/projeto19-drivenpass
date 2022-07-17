@@ -10,13 +10,13 @@ export async function postWifi(req: Request, res: Response) {
   return res.sendStatus(201);
 }
 
-export async function getAllWifi(req: Request, res: Response) {
+export async function getAllWifis(req: Request, res: Response) {
   const wifiId = parseInt(req.params.wifiId);
   const userId: number = res.locals.user.id;
 
   if (!wifiId) {
-    const allWifi = await wifiService.getAllWifi(userId);
-    return res.status(200).send(allWifi);
+    const allWifis = await wifiService.getAllWifis(userId);
+    return res.status(200).send(allWifis);
   }
 
   const wifiById = await wifiService.getWifiById(userId, wifiId);

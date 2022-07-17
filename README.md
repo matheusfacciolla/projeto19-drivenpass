@@ -185,7 +185,7 @@ POST /createdocument (autenticada)
     - Rota para criar um document
     - headers: { "Authorization": "Bearer $token" }
     - body: {
-        "docType":"cnh" | "rg" 
+        "docType":"RG" | "CNH" 
         "completeName":"Fulano da Silva Santos"
         "emissionDate":"01/22"
         "expirationDate":"01/27"
