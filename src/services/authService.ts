@@ -3,13 +3,13 @@ import jwt from "jsonwebtoken";
 
 import * as authRepository from "../repositories/authRepository.js";
 import { CreateUserData } from "../repositories/authRepository.js";
-import { encrypt } from "../utils/cryptrFormat.js";
 
 export async function signUp(user: CreateUserData) {
   const isEmailExist = await authRepository.findUserByEmail(user.email);
+  const SALT = 10;
 
   if (!isEmailExist) {
-    user.password = encrypt(user.password);
+    user.password = bcrypt.hashSync(user.password, SALT);
     await authRepository.createUser(user);
   } else {
     throw {
@@ -23,7 +23,7 @@ export async function signUp(user: CreateUserData) {
 
 export async function signIn(user: CreateUserData) {
   const userInfo = await authRepository.findUserByEmail(user.email);
-  const isCorrectPassword = await bcrypt.compare(user.password, userInfo.password);
+  const isCorrectPassword = bcrypt.compareSync(user.password, userInfo.password);
 
   if (!userInfo) {
     throw {
