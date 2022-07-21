@@ -23,7 +23,7 @@ enum docTypes {
 
 model users {
   id         Int           @id @default(autoincrement())
-  email      String
+  email      String        @unique
   password   String
   Credential credentials[]
   Note       notes[]
